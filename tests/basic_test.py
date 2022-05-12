@@ -1,7 +1,6 @@
 from pythontestapplication import applicationfile2
 
-from .context import pythontestapplication
-
+import context 
 
 def test_oursamplefunction():
-    assert applicationfile2.convert("Johhny") == "Johnny"
+    assert applicationfile2.convert("Johnny") == "Johnny"
