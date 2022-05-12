@@ -1,0 +1,50 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+# pip install black
+# pip install pre-commit
+# pip install pylint
+# pip install flake8
+# pip install seed-isort-config
+#
+
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+-   repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+    -   id: black
+        args: # Black Configuration Arguments
+          - --line-length=88
+          - --include='\.pyi?$'
+          # Exclude the following folders from scans
+          -  --exclude="""\.git |
+             \.__pycache__|
+             \.venv|
+             build|
+             dist"""
+        language_version: python3.8
+-   repo: https://github.com/pycqa/flake8
+    rev: 82b698e09996cdde5d473e234681d8380810d7a2
+    hooks:
+    -   id: flake8
+        args: # Flake8 Configuration Arguments
+          # black compatibility arguments
+          - "--max-line-length=88"
+          - "--max-complexity=18"
+          - "--select=B,C,E,F,W,T$,B9"
+          # ignore following errors <see here: https://flake8.pycqa.org/en/latest/user/error-codes.html
+          - "--ignore=E203,E266,E501,W503,F403,F401,E402"
+-   repo: https://github.com/asottile/seed-isort-config
+    rev: v2.2.0
+    hooks:
+    -   id: seed-isort-config
+-   repo:  https://github.com/pre-commit/mirrors-isort
+    rev: v5.10.1
+    hooks:
+    -   id: isort
